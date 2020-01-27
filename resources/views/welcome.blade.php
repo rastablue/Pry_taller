@@ -6,15 +6,36 @@
     <h1 class="display-4">Notas</h1>
 
     @if (session('mensaje'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('mensaje') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
 
     <form action="{{ route('notas.crear') }} " method="POST">
         @csrf
-        <input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2">
-        <input type="text" name="descripcion" placeholder="Descripcion" class="form-control mb-2">
+
+        @error('nombre')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                El nombre es requerido
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @enderror @if ($errors->has('descripcion'))
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        La descripción es requerida
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        @endif
+
+        <input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2" value="{{ old('nombre') }}">
+        <input type="text" name="descripcion" placeholder="Descripcion" class="form-control mb-2" value="{{ old('descripcion') }}">
         <button class="btn btn-primary btn-block" type="submit">Agregar</button>
     </form>
 
