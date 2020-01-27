@@ -57,7 +57,7 @@ class PagesController extends Controller
 
         $request->validate([
             'nombre' => 'required',
-            'descripcion' => 'required',
+            'descripcion' => 'required'
         ]);
 
         $notaNueva = new App\Nota;
@@ -67,5 +67,29 @@ class PagesController extends Controller
         $notaNueva->save();
 
         return back()->with('mensaje', 'Nota agregada!');
+    }
+
+    public function editar($id){
+
+        $nota = App\Nota::findOrFail($id);
+
+        return view('notas.editar', compact('nota'));
+
+    }
+
+    public function update(Request $request, $id){
+
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required'
+        ]);
+
+        $notaUpdate = App\Nota::findOrFail($id);
+        $notaUpdate->nombre = $request->nombre;
+        $notaUpdate->descripcion = $request->descripcion;
+
+        $notaUpdate->save();
+
+        return back()->with('mensaje', 'Se actualizo con exito!');
     }
 }

@@ -19,3 +19,7 @@ Route::get('inicio/{id}', 'PagesController@detalle')->name('notas.detalle');
 Route::get('practica/{id}', 'PagesController@carros')->name('notas.carros');
 
 Route::post('/', 'PagesController@crear')->name('notas.crear');
+
+Route::get('editar/{id}', 'PagesController@editar')->name('notas.editar');
+
+Route::put('/editar/{id}', 'PagesController@update')->name('notas.update');
