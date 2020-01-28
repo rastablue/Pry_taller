@@ -92,4 +92,29 @@ class PagesController extends Controller
 
         return back()->with('mensaje', 'Se actualizo con exito!');
     }
+
+    public function editaCarros($id){
+
+        $nota = App\Carro::findOrFail($id);
+
+        return view('notas.editaCarros', compact('nota'));
+    }
+
+    public function updateCarros(Request $form1, $id){
+
+        $form1->validate([
+            'marca' => 'required',
+            'modelo' => 'required',
+            'placa' => 'required'
+        ]);
+
+        $notaUpdate = App\Carro::findOrFail($id);
+        $notaUpdate->marca = $form1->marca;
+        $notaUpdate->modelo = $form1->modelo;
+        $notaUpdate->placa = $form1->placa;
+
+        $notaUpdate->save();
+
+        return back()->with('mensaje', 'se actualizo con exito!');
+    }
 }

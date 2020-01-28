@@ -7,10 +7,11 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">#id</th>
-                <th scope="col">marca</th>
-                <th scope="col">modelo</th>
-                <th scope="col">placa</th>
+                <th scope="col">#Id</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -26,7 +27,10 @@
                 <td>{{ $meti->marca }}</td>
                 <td>{{ $meti->modelo }}</td>
                 <td>{{ $meti->placa }}</td>
-                <td>@mdo</td>
+                <td>
+                    <a href="{{ route('notas.editaCarros', $meti) }} " class="btn btn-warning btn-sm">Editar</a>
+
+                </td>
               </tr>
 
             @endforeach
