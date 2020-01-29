@@ -93,6 +93,14 @@ class PagesController extends Controller
         return back()->with('mensaje', 'Se actualizo con exito!');
     }
 
+    public function eliminar($id){
+
+        $notaEliminar = App\Nota::findOrFail($id);
+        $notaEliminar->delete();
+
+        return back()->with('mensaje', 'nota eliminada');
+    }
+
     public function editaCarros($id){
 
         $nota = App\Carro::findOrFail($id);
